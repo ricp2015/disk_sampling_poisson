@@ -13,7 +13,7 @@ a = r/np.sqrt(2)
 nx, ny = int(width / a) + 1, int(height / a) + 1
 #lista delle coordinate nella griglia
 coords_list = [(ix, iy) for ix in range(nx) for iy in range(ny)]
-#dizionario delle celle: come chiave pongo la coordinata della cella, come valore
+#dizionario delle celle: come chiave si pone la coordinata della cella, come valore
 #l'indice delle coordinate del punto di quella cella (None se nessun punto è presente)
 cells = {coords: None for coords in coords_list}
 
@@ -45,19 +45,19 @@ def get_neighbours(coords):
 def point_valid(pt):
     #coordinate della cella di pt
     cell_coords = get_cell_coords(pt)
-    #ciclo sui punti nelle celle vicine a quella di pt
+    #cicla sui punti nelle celle vicine a quella di pt
     for idx in get_neighbours(cell_coords):
         #punto vicino
         nearby_pt = samples[idx]
         #distanza quadratica tra il punto pt e il punto vicino
         distance2 = (nearby_pt[0]-pt[0]) ** 2 + (nearby_pt[1]-pt[1])**2
-        #se i punti sono troppo vicino, restituisce False dato che pt non è valido
+        #se i punti sono troppo vicini, restituisce False dato che pt non è valido
         if distance2 < r * r:
             return False
     #tutti i punti vicini sono stati testati, pt è valido
     return True
 
-#Disegna al massimo k punti a partire da refpt (punto attivo), in un anello di raggio
+#disegna al massimo k punti a partire da refpt (punto attivo), in un anello di raggio
 #interno r, e raggio esterno 2r. Se nessuno di loro è valido, restituisce False,
 #altrimenti il punto (pt).
 def get_point(k, refpt):
@@ -79,12 +79,12 @@ def get_point(k, refpt):
     #nessun candidato è valido
     return False
 
-#scelgo un punto a caso per iniziare
+#sceglie un punto a caso per iniziare
 pt = (np.random.uniform(0, width), np.random.uniform(0, height))
 samples = [pt]
 #il primo sample è indicizzato a 0 nella lista dei sample
 cells[get_cell_coords(pt)] = 0
-#è attivo, cioè sto cercando dei punti vicino a lui
+#è attivo, cioè sta cercando dei punti vicino a lui
 active = [0]
 nsamples = 1
 #finchè sono presenti punti nella lista dei punti attivi
@@ -100,7 +100,7 @@ while active:
         nsamples += 1
         active.append(len(samples)-1)
         cells[get_cell_coords(pt)] = len(samples) - 1
-    #se nessun punto vicino a quello di riferimento è valido, lo rimuovo dalla lista dei punti attivi
+    #se nessun punto vicino a quello di riferimento è valido, lo rimuove dalla lista dei punti attivi
     else:
         active.remove(idx)
 
