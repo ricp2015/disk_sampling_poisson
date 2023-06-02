@@ -1,16 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib
-"""
-width, height = 60, 45
-N = int(width * height / 4)
-plt.scatter(np.random.uniform(0, width, N), np.random.uniform(0, height, N), c="g", alpha=0.6, lw=0)
-plt.xlim(0, width)
-plt.ylim(0, height)
-plt.axis("off")
-plt.show()
-#con clustering
-"""
+
 #numero massimo di punti candidati intorno a un punto di riferimento
 k = 30
 #distanza minima tra i punti
